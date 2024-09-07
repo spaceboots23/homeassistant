@@ -1,0 +1,18 @@
+description: Play latest BBC news on Google TV
+trigger:
+  - platform: state
+    entity_id: input_button.bbc_news
+    from: "off"
+    to: "on"
+condition: []
+action:
+  - action: shell_command.fetch_bbc_news
+    data: {}
+  - delay: "00:00:01"
+  - target:
+      entity_id: media_player.chromecast_hd
+    data:
+      media_content_id: "{{ states('input_text.latest_bbc_news_url') }}"
+      media_content_type: audio/mp3
+    action: media_player.play_media
+mode: single
