@@ -1,0 +1,19 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+shell_command:
+  fetch_bbc_news: 'python3 /config/python_scripts/fetch_bbc_news.py'
+
+input_text:
+  latest_bbc_news_url:
+    name: Latest BBC News URL
+    initial: ''
+    max: 255
